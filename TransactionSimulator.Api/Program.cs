@@ -1,4 +1,4 @@
-using TransactionSimulator.Application;
+﻿using TransactionSimulator.Application;
 using TransactionSimulator.Domain.Config;
 using TransactionSimulator.Infrastructure;
 
@@ -12,18 +12,18 @@ builder.Services.Configure<AppSettings>(builder.Configuration);
 
 builder.Services.AddInfrastructure(builder.Configuration);
 builder.Services.AddApplication(builder.Configuration);
+var appSettings = builder.Configuration.Get<AppSettings>() ;
 builder.Services.AddCors(options =>
 {
-    options.AddPolicy("AllowReactApp",
-        policy => policy.WithOrigins("http://localhost:5173") 
+    options.AddPolicy(appSettings.CorsConfig.PolicyName,
+        policy => policy.WithOrigins(appSettings.CorsConfig.AllowedOrigins)
                         .AllowAnyMethod()
                         .AllowAnyHeader());
 });
 
 
-
 var app = builder.Build();
-app.UseCors("AllowReactApp");
+app.UseCors(appSettings?.CorsConfig?.PolicyName);
 
 if (app.Environment.IsDevelopment())
 {

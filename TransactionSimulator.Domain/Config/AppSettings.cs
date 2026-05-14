@@ -12,9 +12,15 @@ namespace TransactionSimulator.Domain.Config
         public DatabaseConfigSettings DatabaseConfig { get; set; } = new();
         public BankPolicySettings BankPolicy { get; set; } = new();
         public PagingConfigSettings PagingConfig { get; set; } = new();
+        public CorsConfigSettings CorsConfig { get; set; } = new();
         public class ConnectionStringsSettings
         {
             public string DefaultConnection { get; set; } = string.Empty;
+        }
+        public class CorsConfigSettings
+        {
+            public string PolicyName { get; set; } = "AllowReactApp";
+            public string[] AllowedOrigins { get; set; } = Array.Empty<string>();
         }
         public class DatabaseConfigSettings
         {
