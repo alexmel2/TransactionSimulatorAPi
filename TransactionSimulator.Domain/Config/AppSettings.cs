@@ -13,9 +13,15 @@ namespace TransactionSimulator.Domain.Config
         public BankPolicySettings BankPolicy { get; set; } = new();
         public PagingConfigSettings PagingConfig { get; set; } = new();
         public CorsConfigSettings CorsConfig { get; set; } = new();
+        public LoggingSettings Logging{ get; set; } = new();
         public class ConnectionStringsSettings
         {
             public string DefaultConnection { get; set; } = string.Empty;
+        }
+        public class LoggingSettings
+        {
+            public string LogLevel { get; set; } = "Information";
+            public string LogPath { get; set; } = "Logs/api-log.txt";
         }
         public class CorsConfigSettings
         {
