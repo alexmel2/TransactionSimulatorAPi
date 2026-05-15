@@ -1,0 +1,49 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.14.36511.14
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TransactionSimulator.Api", "TransactionSimulator.Api\TransactionSimulator.Api.csproj", "{4F195924-D3AA-4A5C-8B9D-CF2DD2A15141}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TransactionSimulator.Domain", "TransactionSimulator.Domain\TransactionSimulator.Domain.csproj", "{DDB68D29-02AD-400F-B672-1B5209F31E7D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TransactionSimulator.Application", "TransactionSimulator.Application\TransactionSimulator.Application.csproj", "{0861C509-5FE1-4341-B34C-71112A0A9506}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TransactionSimulator.Infrastructure", "TransactionSimulator.Infrastructure\TransactionSimulator.Infrastructure.csproj", "{2A459018-F491-4B93-963F-0C21481D92D0}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{8EC462FD-D22E-90A8-E5CE-7E832BA40C5D}"
+	ProjectSection(SolutionItems) = preProject
+		Directory.Packages.props = Directory.Packages.props
+		README.md = README.md
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{4F195924-D3AA-4A5C-8B9D-CF2DD2A15141}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4F195924-D3AA-4A5C-8B9D-CF2DD2A15141}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4F195924-D3AA-4A5C-8B9D-CF2DD2A15141}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4F195924-D3AA-4A5C-8B9D-CF2DD2A15141}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DDB68D29-02AD-400F-B672-1B5209F31E7D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DDB68D29-02AD-400F-B672-1B5209F31E7D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DDB68D29-02AD-400F-B672-1B5209F31E7D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DDB68D29-02AD-400F-B672-1B5209F31E7D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0861C509-5FE1-4341-B34C-71112A0A9506}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0861C509-5FE1-4341-B34C-71112A0A9506}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0861C509-5FE1-4341-B34C-71112A0A9506}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0861C509-5FE1-4341-B34C-71112A0A9506}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2A459018-F491-4B93-963F-0C21481D92D0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2A459018-F491-4B93-963F-0C21481D92D0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2A459018-F491-4B93-963F-0C21481D92D0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2A459018-F491-4B93-963F-0C21481D92D0}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {DD1B7635-F32F-4F0D-9E58-797D0EFEE546}
+	EndGlobalSection
+EndGlobal
