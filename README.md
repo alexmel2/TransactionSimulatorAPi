@@ -55,4 +55,4 @@ Validation is performed automatically before the request reaches the Controller.
 // Example rule in TransactionRequestValidator
 RuleFor(x => x.TransactionId).NotEmpty().WithMessage("Transaction ID is missing.");
 
-* **RegionCacheService**: Pre-loads `RegionSD` data into `IMemoryCache` on startup and refreshes it daily at midnight to eliminate redundant DB queries.
+### RegionCacheService : Pre-loads `RegionSD` data into `IMemoryCache` on startup and refreshes it daily at midnight to eliminate redundant DB queries.
