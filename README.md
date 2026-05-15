@@ -42,7 +42,7 @@ The project includes a dedicated `test-api.http` file. This is a modern, lightwe
 
 ### Caching & Background Tasks
 
-* **RegionCacheService**: Pre-loads `RegionSD` data into `IMemoryCache` on startup and refreshes it daily at midnight to eliminate redundant DB queries.
+* **RegionCacheService**: Pre-loads `Regions` data into `IMemoryCache` on startup and refreshes it daily at midnight to eliminate redundant DB queries.
 ## 🛡️ Input Validation (FluentValidation)
 
 To ensure data integrity and prevent system crashes (such as `DateTime` offset errors), the project uses **FluentValidation**.
