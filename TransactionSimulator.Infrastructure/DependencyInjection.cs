@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using TransactionSimulator.Domain.Interfaces;
+using TransactionSimulator.Infrastructure.Caching;
 
 namespace TransactionSimulator.Infrastructure
 {
@@ -22,7 +23,8 @@ namespace TransactionSimulator.Infrastructure
                       options.UseSqlServer(
                      connectionString,
                       b => b.MigrationsAssembly("TransactionSimulator.Infrastructure")));
-
+            services.AddMemoryCache();
+            services.AddHostedService<RegionCacheService>();
             return services;
         }
     }
