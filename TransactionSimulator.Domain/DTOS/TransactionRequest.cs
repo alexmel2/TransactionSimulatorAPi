@@ -9,6 +9,7 @@ namespace TransactionSimulator.Domain.DTOS
     public record TransactionRequest(
     Guid TransactionId,
     int RegionId,
+
     DateTime SubmittedTimeUtc
 );
 }

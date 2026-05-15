@@ -1,10 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
-using System;
-using TimeZoneConverter;
 using TransactionSimulator.Domain.Config;
-using TransactionSimulator.Domain.DTOS;
 using TransactionSimulator.Domain.Entities;
 using TransactionSimulator.Domain.Enums;
 using TransactionSimulator.Domain.Interfaces;
@@ -41,8 +38,7 @@ namespace Application
         {
             try
             {
-                
-                var region = await _context.Regions.AsNoTracking().FirstAsync(x=> x.Id == regionId);
+                var region = await _context.Regions.AsNoTracking().FirstOrDefaultAsync(x=> x.Id == regionId);
                 if (region == null) throw new Exception("Region not found");
 
                 var transaction = new Transaction
@@ -58,6 +54,7 @@ namespace Application
             }
             catch (Exception ex)
             {
+
                 _logger.LogError(ex, $"An error occurred while processing Transaction {transactionId}");
                 return TransactionStatus.Rejected.ToString();
             }
@@ -68,7 +65,7 @@ namespace Application
 
             try
             {
-                if (pageNumber < _settings.PagingConfig.DefaultPageSize) pageNumber = _settings.PagingConfig.DefaultPageSize;
+                if (pageNumber < _settings.PagingConfig.DefaultPageNumber) pageNumber = _settings.PagingConfig.DefaultPageNumber;
                 if (pageSize > _settings.PagingConfig.MaxPageSize)       pageSize = _settings.PagingConfig.MaxPageSize;
 
                 return await _context.Transactions

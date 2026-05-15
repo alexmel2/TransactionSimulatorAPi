@@ -1,7 +1,10 @@
-﻿using TransactionSimulator.Application;
+﻿using FluentValidation;
+using FluentValidation.AspNetCore;
+using Serilog;
+using TransactionSimulator.Api.Validators;
+using TransactionSimulator.Application;
 using TransactionSimulator.Domain.Config;
 using TransactionSimulator.Infrastructure;
-using Serilog;
 var builder = WebApplication.CreateBuilder(args);
 // 1. SETUP LOGGING (Serilog)
 // Reads from "Serilog" section in appsettings.json
@@ -30,7 +33,8 @@ try
                             .AllowAnyHeader());
     });
 
-
+    builder.Services.AddFluentValidationAutoValidation(); 
+    builder.Services.AddValidatorsFromAssemblyContaining<TransactionRequestValidator>();
 
     var app = builder.Build();
     // 1. SETUP LOGGING (Serilog)

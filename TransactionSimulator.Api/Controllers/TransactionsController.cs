@@ -31,8 +31,6 @@ namespace ShvaSimulator.Api.Controllers
        [HttpPost("CreateTransaction")]
         public async Task<ActionResult<TransactionResponseDto>> CreateTransaction([FromBody] TransactionRequest request)
         {
-            if (request == null) return BadRequest("Invalid transaction data.");
-
             var result = await _transactionService.ProcessTransactionAsync(request.TransactionId, request.RegionId, request.SubmittedTimeUtc);
             return new TransactionResponseDto(request.TransactionId, result, request.SubmittedTimeUtc);
         }
