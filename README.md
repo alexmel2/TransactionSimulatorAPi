@@ -40,6 +40,9 @@ Depending on your development environment, use one of the following sets of comm
 
 The project includes a dedicated `test-api.http` file. This is a modern, lightweight alternative to Postman.
 
+### Caching & Background Tasks
+
+* **RegionC
 ## 🛡️ Input Validation (FluentValidation)
 
 To ensure data integrity and prevent system crashes (such as `DateTime` offset errors), the project uses **FluentValidation**.
@@ -56,6 +59,4 @@ Validation is performed automatically before the request reaches the Controller.
 // Example rule in TransactionRequestValidator
 RuleFor(x => x.TransactionId).NotEmpty().WithMessage("Transaction ID is missing.");
 
-## Caching & Background Tasks
-
-* **RegionCacheService**: Pre-loads `RegionSD` data into `IMemoryCache` on startup and refreshes it daily at midnight to eliminate redundant DB queries.
+acheService**: Pre-loads `RegionSD` data into `IMemoryCache` on startup and refreshes it daily at midnight to eliminate redundant DB queries.
