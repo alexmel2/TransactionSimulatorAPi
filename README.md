@@ -39,3 +39,18 @@ Depending on your development environment, use one of the following sets of comm
 #### 🧪 API Testing with `.http` File
 
 The project includes a dedicated `test-api.http` file. This is a modern, lightweight alternative to Postman.
+## 🛡️ Input Validation (FluentValidation)
+
+To ensure data integrity and prevent system crashes (such as `DateTime` offset errors), the project uses **FluentValidation**.
+
+### Key Validation Rules:
+- **TransactionId**: Must not be an empty GUID (`00000000-0000...`).
+- **SubmittedTimeUtc**: Must be a valid timestamp (not `default(DateTime)`).
+- **RegionId**: Must be greater than 0 and exist in the database.
+
+### How it Works:
+Validation is performed automatically before the request reaches the Controller. If a request is invalid, the API returns a `400 Bad Request` with a detailed JSON error message, and the event is logged via Serilog.
+
+```csharp
+// Example rule in TransactionRequestValidator
+RuleFor(x => x.TransactionId).NotEmpty().WithMessage("Transaction ID is missing.");
