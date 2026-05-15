@@ -6,8 +6,7 @@ using TransactionSimulator.Application;
 using TransactionSimulator.Domain.Config;
 using TransactionSimulator.Infrastructure;
 var builder = WebApplication.CreateBuilder(args);
-// 1. SETUP LOGGING (Serilog)
-// Reads from "Serilog" section in appsettings.json
+
 Log.Logger = new LoggerConfiguration()
     .ReadFrom.Configuration(builder.Configuration)
     .CreateLogger();
@@ -21,10 +20,10 @@ try
     builder.Services.AddEndpointsApiExplorer();
     builder.Services.AddSwaggerGen();
     builder.Services.Configure<AppSettings>(builder.Configuration);
-
     builder.Services.AddInfrastructure(builder.Configuration);
     builder.Services.AddApplication(builder.Configuration);
     var appSettings = builder.Configuration.Get<AppSettings>();
+    #region CorsConfig
     builder.Services.AddCors(options =>
     {
         options.AddPolicy(appSettings.CorsConfig.PolicyName,
@@ -32,14 +31,13 @@ try
                             .AllowAnyMethod()
                             .AllowAnyHeader());
     });
-
+    #endregion
+    #region FluentValidation
     builder.Services.AddFluentValidationAutoValidation(); 
     builder.Services.AddValidatorsFromAssemblyContaining<TransactionRequestValidator>();
-
+    #endregion
     var app = builder.Build();
-    // 1. SETUP LOGGING (Serilog)
-    // Reads from "Serilog" section in appsettings.json
-
+  
     app.UseCors(appSettings?.CorsConfig?.PolicyName);
 
     if (app.Environment.IsDevelopment())
@@ -47,11 +45,8 @@ try
         app.UseSwagger();
         app.UseSwaggerUI();
     }
-
     app.UseHttpsRedirection();
-
     app.UseAuthorization();
-
     app.MapControllers();
     app.Run();
 }
