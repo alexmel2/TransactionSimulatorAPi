@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using TransactionSimulator.Domain.DTOS;
 using TransactionSimulator.Domain.Entities;
 using TransactionSimulator.Domain.Interfaces; 
@@ -6,7 +7,8 @@ using TransactionSimulator.Domain.Interfaces;
 namespace ShvaSimulator.Api.Controllers
 {
     [ApiController]
-    [Route("api/[controller]")] 
+    [Route("api/[controller]")]
+    [Authorize]
     public class TransactionsController : ControllerBase
     {
         private readonly ITransactionService _transactionService;
