@@ -1,0 +1,53 @@
+@hostname = localhost
+@port = 7171
+@baseUrl = https://{{hostname}}:{{port}}/api
+
+### 1. Register a new user (Signup)
+# This will call the 'register' endpoint and save the user to SQL Server.
+POST {{baseUrl}}/auth/register
+Content-Type: application/json
+
+{
+  "username": "alex_melnik",
+  "email": "alex@example.com",
+  "password": "Password123!"
+}
+
+###
+
+### 2. Login with the user (Get JWT Token)
+# This request will return a JSON with a 'token' property.
+# @name login
+POST {{baseUrl}}/auth/login
+Content-Type: application/json
+
+{
+  "username": "alex_melnik",
+  "password": "Password123!"
+}
+
+###
+
+### 3. Save the token from the response
+# In Visual Studio, you can capture the token into a variable for subsequent calls.
+@authToken = {{login.response.body.token}}
+
+###
+
+### 4. Test an Authorized endpoint
+# Now we use the token to access protected data (Transactions).
+# This will fail with 401 if the token is missing or invalid.
+GET {{baseUrl}}/transactions
+Authorization: Bearer {{authToken}}
+
+###
+
+### 5. Login with the default Admin (Data Seeding check)
+# Remember we created "admin/123" in the DbInitializer.
+POST {{baseUrl}}/auth/login
+Content-Type: application/json
+
+{
+  "username": "admin",
+  "password": "123"
+}

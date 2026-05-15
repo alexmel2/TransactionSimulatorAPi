@@ -41,7 +41,7 @@ namespace TransactionSimulator.Infrastructure.Caching
         private TimeSpan CalculateDelayUntilMidnight()
         {
             var now = DateTime.Now;
-            var nextMidnight = now.Date.AddDays(1); // 00:00 של מחר
+            var nextMidnight = now.Date.AddDays(1); 
             return nextMidnight - now;
         }
 

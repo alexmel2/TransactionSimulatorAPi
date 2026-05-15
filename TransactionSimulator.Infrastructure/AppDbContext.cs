@@ -1,4 +1,6 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Options;
 using TransactionSimulator.Domain.Config;
 using TransactionSimulator.Domain.Entities;
@@ -6,7 +8,7 @@ using TransactionSimulator.Domain.Interfaces;
 
 namespace TransactionSimulator.Infrastructure
 {
-    public class AppDbContext : DbContext, IApplicationDbContext
+    public class AppDbContext : IdentityDbContext<IdentityUser>, IApplicationDbContext
     {
         private readonly AppSettings _settings;
 

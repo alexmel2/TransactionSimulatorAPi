@@ -1,0 +1,67 @@
+﻿### Configuration Variables
+@base_url = https://localhost:7171/api/Transactions
+
+### 1. Get All Regions
+# Description: Fetch supported countries and their time zones.
+# Expected Response: 200 OK with an array of Region objects.
+# Example: [{ "id": 1, "name": "Israel", "timeZoneId": "Israel Standard Time" }, ...]
+GET {{base_url}}/regions
+Accept: application/json
+
+###
+
+### 2. Get Approved Transactions History
+# Description: Fetch history with pagination.
+# Expected Response: 200 OK with an array of TransactionResponseDto.
+# Example: [{ "transactionId": "guid", "status": "Approved", "submittedTimeUtc": "..." }]
+GET {{base_url}}/GetApprovedTransactions?page=1&pageSize=10
+Accept: application/json
+
+###
+
+### 3. Create New Transaction (Should be Approved)
+# Description: Testing a transaction during standard business hours (12:00 PM).
+# Expected Response: 
+# {
+#   "transactionId": "matching-guid",
+#   "status": "Approved",
+#   "submittedTimeUtc": "2026-05-14T12:00:00Z"
+# }
+POST {{base_url}}/CreateTransaction
+Content-Type: application/json
+
+{
+    "transactionId": "{{$guid}}",
+    "regionId": 1,
+    "submittedTimeUtc": "2026-05-14T12:00:00Z"
+}
+
+###
+
+### 4. Create New Transaction (Should be Rejected)
+# Description: Testing a transaction late at night (23:30 PM).
+# Expected Response: 
+# {
+#   "transactionId": "matching-guid",
+#   "status": "Rejected",
+#   "submittedTimeUtc": "2026-05-14T23:30:00Z"
+# }
+POST {{base_url}}/CreateTransaction
+Content-Type: application/json
+
+{
+    "transactionId": "{{$guid}}",
+    "regionId": 1,
+    "submittedTimeUtc": "2026-05-14T23:30:00Z"
+}
+
+###
+
+### 5. Invalid Data Test (Error Handling)
+# Description: Sending an empty body to test API validation.
+# Expected Response: 400 Bad Request with validation error details.
+POST {{base_url}}/CreateTransaction
+Content-Type: application/json
+
+{
+}
